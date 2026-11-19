@@ -10,7 +10,7 @@ export { MAP_LAYERS };
 
 const MARGIN = 12;
 const TEXT = '#e6e9ef';
-const FONT = '12px "IBM Plex Mono", ui-monospace, monospace';
+const FONT = '500 12px Montserrat, system-ui, sans-serif';
 
 export function createFinderMap({ container, canvas, legendEl, tipEl, onPick }) {
   const ctx = canvas.getContext('2d');
@@ -227,7 +227,7 @@ export function createFinderMap({ container, canvas, legendEl, tipEl, onPick }) 
       ctx.arc(p.x + 13, p.y - 13, 7, 0, Math.PI * 2);
       ctx.fillStyle = colour;
       ctx.fill();
-      ctx.font = 'bold 11px "IBM Plex Mono", monospace';
+      ctx.font = '700 11px Montserrat, system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#06080c';

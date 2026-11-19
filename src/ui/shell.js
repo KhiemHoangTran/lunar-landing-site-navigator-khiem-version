@@ -146,7 +146,7 @@ export function createShell({ app, flow, finder, globe, getMission, setMission }
     const preset = answer.profile !== 'custom';
     const pages = [
       () => [
-        h('h3', {}, 'Plan a mission'),
+        h('h3', { class: 'poster-title' }, h('span', {}, 'Plan'), ' ', h('span', {}, 'a mission')),
         h('div', { class: 'profile-cards' }, missions.profiles.map(missionCard)),
         preset
           ? h('ul', { class: 'facts' }, missions.profiles.find((p) => p.id === answer.profile).facts.map((f) => h('li', { title: missions.sources[f.source]?.title ?? '' }, f.text)))

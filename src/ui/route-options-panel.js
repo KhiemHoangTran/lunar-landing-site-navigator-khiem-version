@@ -77,7 +77,7 @@ function drawProfile(canvas, result, plan) {
     if (p) ctx.fillRect(x(p.distM) - dpr, pad.t, 2 * dpr, hgt - pad.t - pad.b);
   }
   ctx.fillStyle = '#8d96a6';
-  ctx.font = `${10 * dpr}px "IBM Plex Mono", monospace`;
+  ctx.font = `500 ${10 * dpr}px Montserrat, system-ui, sans-serif`;
   ctx.textAlign = 'right';
   ctx.textBaseline = 'middle';
   ctx.fillText(`${Math.round(hi)} m`, pad.l - 3 * dpr, y(hi));

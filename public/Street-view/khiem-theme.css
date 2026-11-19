@@ -1,0 +1,57 @@
+/* Khiem version: the street view in the same look as the app (src/ui/khiem-theme.css).
+   Black and white, one electric-blue accent (#3355ff), the Sun stays yellow, Earth is pale so it is never the accent.
+   Montserrat for every word: heavy and uppercase for titles, regular for text and numbers.
+   Loaded after the page's own styles and only overrides them. */
+:root {
+  --accent: #3355ff;
+  --accent-soft: rgba(51, 85, 255, 0.45);
+  --accent-tint: rgba(51, 85, 255, 0.12);
+  --glass: rgba(4, 4, 6, 0.86);
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #f2f2f4;
+  --muted: #a8a8ad;
+  --earth: #dfe5ff;
+  --display: 'Montserrat', 'Inter', system-ui, sans-serif;
+  --serif: var(--display);
+  --sans: 'Montserrat', system-ui, sans-serif;
+  --mono: 'Montserrat', system-ui, sans-serif;
+}
+html, body { font-family: var(--sans); font-variant-numeric: tabular-nums; }
+
+/* top bar, same as the app */
+#appbar { background: rgba(0, 0, 0, 0.9); gap: 22px; padding: 0 24px; }
+#appbar .brand { font: 800 13px var(--display); letter-spacing: 0.3em; text-transform: uppercase; color: #fff; }
+#appbar .brand b { color: #fff; margin-right: 4px; }
+#appbar nav { align-items: center; gap: 4px; }
+#appbar nav a { height: 34px; padding: 0 16px; border: 0; border-radius: 999px; font: 500 11.5px var(--sans); letter-spacing: 0.2em; text-transform: uppercase; }
+#appbar nav a.on { background: var(--accent); color: #fff; border-bottom-color: transparent; }
+
+/* panels: corner mark and labels follow the accent; labels grey like the app's */
+.label { font-family: var(--sans); letter-spacing: 0.28em; color: var(--muted); }
+#site h1, #globePanel h1 { font: 800 24px/1.08 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-shadow: 4px 4px 0 var(--accent-soft); }
+#when { font: 800 20px var(--display); text-transform: uppercase; letter-spacing: 0.02em; }
+.stat .v { font-family: var(--display); font-weight: 700; }
+.seg button { font: 500 11px var(--sans); letter-spacing: 0.18em; text-transform: uppercase; }
+.seg button.on { border-bottom-color: var(--accent); }
+.siteBtn:hover { background: var(--accent-tint); }
+.gLabel { background: rgba(0, 0, 0, 0.75); }
+
+/* buttons: solid blue, white text */
+#play { background: var(--accent); color: #fff; }
+#play:hover { background: #4a68ff; filter: none; }
+#goBtn { background: var(--accent); color: #fff; }
+#vrBtn { border-color: rgba(51, 85, 255, 0.6); }
+#backGlobe:hover { box-shadow: 0 0 0 3px var(--accent-soft), 0 6px 24px rgba(0, 0, 0, 0.5); }
+@keyframes vrPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(51, 85, 255, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(51, 85, 255, 0); } }
+
+/* home screen title, like "PLAN A MISSION" */
+#hero .kicker { font-family: var(--sans); letter-spacing: 0.28em; color: var(--muted); }
+#hero h1 { font: 900 clamp(54px, 8.4vw, 120px)/0.96 var(--display); text-transform: uppercase; color: #fff; text-shadow: 6px 6px 0 var(--accent-soft); }
+#hero h1 em { font-style: normal; color: #c9d1ff; }
+#hero .tag { border-left-color: var(--accent); }
+#hero button { font: 700 12px var(--display); letter-spacing: 0.2em; text-transform: uppercase; }
+.homeBtn:hover { color: #fff; }
+
+/* One typeface everywhere, like the reference posters: Montserrat. Each element keeps its own weight and size;
+   numbers use Montserrat's even-width figures so columns still line up. */
+*, *::before, *::after, input, button, select, textarea { font-family: 'Montserrat', system-ui, sans-serif !important; }

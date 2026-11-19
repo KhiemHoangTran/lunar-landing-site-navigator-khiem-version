@@ -1,0 +1,93 @@
+/* Khiem version — the look from the "Plan a mission" mockup (Nov 2026).
+   Black, white and grey, like a space poster; one electric-blue accent for what you can press and what is chosen;
+   the Sun stays yellow. Montserrat for every word: heavy and uppercase for titles, regular for text.
+   Loaded after styles.css and shell.css and only overrides them: delete the <link> in index.html to go back. */
+:root {
+  --accent: #3355ff;           /* white text on it is 5.4 : 1 */
+  --accent-soft: rgba(51, 85, 255, 0.45);
+  --accent-tint: rgba(51, 85, 255, 0.12);
+  --regolith: var(--accent);
+  --space: #000;
+  --space-2: #050507;
+  --panel: rgba(6, 6, 8, 0.94);
+  --card: rgba(255, 255, 255, 0.03);
+  --rule: rgba(255, 255, 255, 0.14);
+  --ink: #f2f2f4;
+  --dim: #a8a8ad;               /* 8 : 1 on black */
+  --pale: #c9d1ff;              /* second line of the big titles */
+  --earth: #dfe5ff;             /* Earth no longer blue, so it is never confused with the accent */
+  --display: 'Montserrat', 'Inter', system-ui, sans-serif;
+  --serif: var(--display);      /* shell.css names use --serif: they become Montserrat */
+  --font-ui: 'Montserrat', system-ui, sans-serif;
+  --font-num: 'Montserrat', system-ui, sans-serif;
+}
+body { background: #000; font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+
+/* buttons: solid blue, white text */
+button.primary, .primary { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
+button.primary:hover, .primary:hover { background: #4a68ff !important; border-color: #4a68ff !important; }
+.eyebrow { font: 500 10.5px var(--font-ui); letter-spacing: 0.28em; color: var(--dim); }
+
+/* ---- top bar ---- */
+.topbar { background: rgba(0, 0, 0, 0.9); border-bottom: 1px solid var(--rule); gap: 22px; padding: 0 24px; }
+.brand { font: 800 13px var(--display); letter-spacing: 0.3em; text-transform: uppercase; color: #fff; }
+.brand b { color: #fff; margin-right: 4px; }
+.tabs { gap: 4px; align-items: center; }
+.tabs button, .tabs a {
+  height: 34px; padding: 0 16px; border: 0; border-radius: 999px;
+  font: 500 11.5px var(--font-ui); letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
+}
+.tabs button[aria-current='page'] { background: var(--accent); color: #fff; border-bottom-color: transparent; }
+.topbar .ghost { font: 500 11px var(--font-ui); letter-spacing: 0.18em; text-transform: uppercase; border-color: rgba(255, 255, 255, 0.3); padding: 10px 16px; }
+.topbar .ghost:hover { border-color: #fff; color: #fff; }
+
+/* ---- titles and names ---- */
+.step-title, .mission-name { font: 800 24px/1.05 var(--display) !important; text-transform: uppercase; letter-spacing: 0.01em !important; }
+.app[data-step='2'] .step-title { font-size: 20px !important; }
+.regions .region strong, .profile-card strong, .app[data-step='2'] .pop-head strong { font-family: var(--display); font-weight: 700; letter-spacing: 0; }
+.profile-card strong { font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; }
+
+/* ---- chosen things: blue line, soft blue offset shadow (was orange) ---- */
+.regions .region[aria-pressed='true'],
+.survey .opt[aria-pressed='true'],
+.opt[aria-pressed='true'] { border-color: var(--accent) !important; background: var(--accent-tint) !important; box-shadow: inset 3px 0 0 var(--accent) !important; }
+.opt:hover { border-color: rgba(51, 85, 255, 0.6); }
+.survey .exact-opts button[aria-pressed='true'], .exact-opts button[aria-pressed='true'] { border-color: var(--accent) !important; background: var(--accent-tint) !important; }
+.profile-card[aria-pressed='true'] { border-color: var(--accent); box-shadow: 5px 5px 0 var(--accent-soft); background: rgba(10, 10, 12, 0.6) !important; }
+.profile-card .pics img { filter: grayscale(1) contrast(1.08); }
+.regions .region[aria-pressed='true'] .verdict { color: #fff !important; }
+
+/* ---- the "Plan a mission" survey as a poster over the live 3D Moon ---- */
+.survey {
+  /* see-through on the right, so the app's own 3D Moon shows behind and can be dragged, zoomed and clicked */
+  background: linear-gradient(90deg, #000 0%, #000 calc(clamp(16px, 5vw, 72px) + 640px), rgba(0, 0, 0, 0) calc(clamp(16px, 5vw, 72px) + 760px));
+  pointer-events: none;
+  justify-content: flex-start;
+  padding-left: clamp(16px, 5vw, 72px);
+}
+.survey-card { pointer-events: auto; }
+.survey-card { width: min(620px, 92vw); background: rgba(0, 0, 0, 0.72); border: 0; padding: 28px 4px 24px 0; backdrop-filter: blur(2px); }
+.survey-card::before { display: none; }
+.survey-dots i { height: 2px; background: #4a4a4f; }
+.survey-dots i.on { background: var(--accent); }
+#surveyBody h3 { font: 900 56px/1 var(--display); text-transform: uppercase; letter-spacing: -0.01em; margin: 22px 0 10px; color: #fff; text-shadow: 5px 5px 0 var(--accent-soft); }
+#surveyBody h3.poster-title { font-size: clamp(56px, 8vw, 104px); line-height: 0.96; margin-bottom: 22px; }
+#surveyBody h3.poster-title span { display: block; }
+#surveyBody h3.poster-title span + span { color: var(--pale); }
+#surveyBody p { color: var(--dim); font-size: 14px; line-height: 1.7; }
+.survey .facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; font-size: 13px; }
+.survey .facts li { padding: 10px 0; border-top: 1px solid var(--rule); color: var(--ink); }
+.survey-nav button { font: 500 11.5px var(--font-ui); letter-spacing: 0.2em; text-transform: uppercase; border-color: rgba(255, 255, 255, 0.3); padding: 15px 12px; }
+.survey-nav #surveyNext { font-family: var(--display); font-weight: 800; }
+.survey-top button { min-width: 44px; min-height: 44px; }
+
+/* ---- panels and cards keep their shapes; the corner marks follow the accent ---- */
+.notes b { color: var(--accent); }
+@media (max-width: 900px) {
+  .survey { background: rgba(0, 0, 0, 0.8); padding: 0; justify-content: center; pointer-events: auto; }
+  .tabs button, .tabs a { padding: 0 10px; letter-spacing: 0.12em; }
+}
+
+/* One typeface everywhere, like the reference posters: Montserrat. Each element keeps its own weight and size;
+   numbers use Montserrat's even-width figures so columns still line up. */
+*, *::before, *::after, input, button, select, textarea { font-family: 'Montserrat', system-ui, sans-serif !important; }
